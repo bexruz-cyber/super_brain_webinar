@@ -1,6 +1,5 @@
 "use client"
 import { useState, useCallback } from 'react';
-import { RegistrationModal } from '@/components/registration-modal';
 import Image from 'next/image';
 import dynamic from 'next/dynamic';
 
@@ -60,7 +59,7 @@ export default function Home() {
     </div>
   );
 
-  const ActionButton = ({ className = "", isMobile = false }) => (
+  const ActionButton = ({ className = "" }) => (
     <button
       className={`bg-[#EA2B2B] shadow-custom-red p-5 rounded-[50px] text-white font-semibold text-lg leading-7 cursor-pointer hover:bg-[#d42626] transition-colors duration-200 ${className}`}
       onClick={handleOpenModal}
@@ -112,8 +111,7 @@ export default function Home() {
 
           {/* Mobile-only elements */}
           <ActionButton 
-            className="mx-auto flex justify-center mb-2.5 max-w-[346px] md:hidden w-full p-[18px]" 
-            isMobile={true}
+            className="mx-auto flex justify-center mb-2.5 max-w-[346px] md:hidden w-full p-[18px]"
           />
           <p className="text-center font-bold text-4xl leading-[56px] mb-3 md:hidden">BEPUL</p>
           <MasterclassList className="px-[13px] mx-auto md:hidden max-w-[582px] mb-6" />

@@ -1,7 +1,7 @@
 "use client"
 
 import type React from "react"
-import { useState, useEffect, useRef, useCallback, memo } from "react"
+import { useState, useEffect, useRef } from "react"
 import { X } from "lucide-react"
 import { IMaskInput } from "react-imask"
 import axios from "axios"
@@ -12,8 +12,7 @@ interface RegistrationModalProps {
   onClose: () => void
 }
 
-// Use memo to prevent unnecessary re-renders
-export const RegistrationModal = memo(function RegistrationModal({ isOpen, onClose }: RegistrationModalProps) {
+export function RegistrationModal({ isOpen, onClose }: RegistrationModalProps) {
   const [formData, setFormData] = useState({
     firstName: "",
     phoneNumber: "",
@@ -24,10 +23,6 @@ export const RegistrationModal = memo(function RegistrationModal({ isOpen, onClo
   const router = useRouter()
   const modalRef = useRef<HTMLDivElement>(null)
 
-  // Create a form data ref to avoid recreating the FormData object on each render
-  const formDataRef = useRef(new FormData())
-
-  // Optimize event listeners with useEffect cleanup
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose()
@@ -52,51 +47,40 @@ export const RegistrationModal = memo(function RegistrationModal({ isOpen, onClo
     }
   }, [isOpen, onClose])
 
-  // Memoize event handlers
-  const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
     setFormData((prev) => ({ ...prev, [name]: value }))
-  }, [])
+  }
 
-  const handlePhoneChange = useCallback((value: string) => {
-    setFormData((prev) => ({ ...prev, phoneNumber: value }))
-  }, [])
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setIsSubmitting(true)
+    setError("")
+    router.push("/thank-you")
+    try {
+      const formDataToSend = new FormData()
+      formDataToSend.append("Ism va Familya", formData.firstName)
+      formDataToSend.append("Telefon raqam", formData.phoneNumber)
 
-  const handleSubmit = useCallback(
-    async (e: React.FormEvent) => {
-      e.preventDefault()
-      setIsSubmitting(true)
-      setError("")
-
-      try {
-        // Reuse the FormData object from ref instead of creating a new one
-        formDataRef.current = new FormData()
-        formDataRef.current.append("Ism va Familya", formData.firstName)
-        formDataRef.current.append("Telefon raqam", formData.phoneNumber)
-        router.push("/thank-you")
-        
-        await axios.post(
-          "https://script.google.com/macros/s/AKfycbzkIMy04cgBl2eIJz5flPbeXz8Tbk2iXg-SRvIfFAmoVm7_iMG-xYfu8PxKjPn3CZpG/exec",
-          formDataRef.current,
-          {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
+      await axios.post(
+        "https://script.google.com/macros/s/AKfycbzkIMy04cgBl2eIJz5flPbeXz8Tbk2iXg-SRvIfFAmoVm7_iMG-xYfu8PxKjPn3CZpG/exec",
+        formDataToSend,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
           },
-        )
+        },
+      )
 
-        onClose()
-      } catch (err) {
-        console.error("Form submission error:", err)
-        setError("Ro'yxatdan o'tishda xatolik yuz berdi. Iltimos, qayta urinib ko'ring.")
-      } finally {
-        setIsSubmitting(false)
-      }
-    },
-    [formData, router, onClose],
-  )
+      onClose()
+    } catch (err) {
+      console.error("Form submission error:", err)
+      setError("Ro'yxatdan o'tishda xatolik yuz berdi. Iltimos, qayta urinib ko'ring.")
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
 
-  // Prevent unnecessary renders when modal is closed
   if (!isOpen) return null
 
   return (
@@ -111,7 +95,6 @@ export const RegistrationModal = memo(function RegistrationModal({ isOpen, onClo
           className="absolute top-3 right-3 p-2 text-gray-500 hover:text-gray-700 z-10 bg-white rounded-full transition-colors duration-200"
           aria-label="Close"
           disabled={isSubmitting}
-          type="button"
         >
           <X size={20} />
         </button>
@@ -126,7 +109,14 @@ export const RegistrationModal = memo(function RegistrationModal({ isOpen, onClo
             </h3>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-4" onClick={(e) => e.stopPropagation()}>
+          <form
+            onSubmit={handleSubmit}
+            className="space-y-4"
+            onClick={(e) => {
+              // Prevent clicks on the form from bubbling up to the modal background
+              e.stopPropagation()
+            }}
+          >
             <div>
               <label htmlFor="firstName" className="block mb-1 font-medium text-sm">
                 Ism va Familyagiz
@@ -153,7 +143,7 @@ export const RegistrationModal = memo(function RegistrationModal({ isOpen, onClo
                 name="phoneNumber"
                 mask="+{998} 00 000 00 00"
                 value={formData.phoneNumber}
-                onAccept={handlePhoneChange}
+                onAccept={(value) => setFormData((prev) => ({ ...prev, phoneNumber: value }))}
                 required
                 disabled={isSubmitting}
                 placeholder="+998 __ ___ __ __"
@@ -175,8 +165,5 @@ export const RegistrationModal = memo(function RegistrationModal({ isOpen, onClo
       </div>
     </div>
   )
-})
-
-// Default export for dynamic import
-export default { RegistrationModal }
+}
 
