@@ -158,7 +158,7 @@ export function RegistrationModal({ isOpen, onClose }: RegistrationModalProps) {
               disabled={isSubmitting}
               className="w-full bg-[#EA2B2B] shadow-custom-red p-3 sm:p-4 rounded-[50px] text-white font-semibold text-base sm:text-lg leading-7 cursor-pointer hover:bg-[#d42626] mt-6 transform hover:scale-[1.02] active:scale-[0.98] transition-transform duration-200 disabled:opacity-70 disabled:cursor-not-allowed"
             >
-              {isSubmitting ? "YUBORILMOQDA..." : "RO&apos;YXATDAN O&apos;TISH"}
+               RO&apos;YXATDAN O&apos;TISH
             </button>
           </form>
         </div>

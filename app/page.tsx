@@ -24,6 +24,7 @@ export default function Home() {
         <li className="font-normal text-sm leading-[22px] flex gap-3 items-start">
           <Image 
             src="/images/listDecoration.png" 
+            className='min-w-[35px]'
             alt="list decoration" 
             width={35} 
             height={28}
@@ -35,6 +36,7 @@ export default function Home() {
         <li className="font-normal text-sm leading-[22px] flex gap-3 items-start">
           <Image 
             src="/images/listDecoration.png" 
+            className='min-w-[35px]'
             alt="list decoration" 
             width={35} 
             height={28}
@@ -46,6 +48,7 @@ export default function Home() {
         <li className="font-normal text-sm leading-[22px] flex gap-3 items-start">
           <Image 
             src="/images/listDecoration.png" 
+            className='min-w-[35px]'
             alt="list decoration" 
             width={35} 
             height={28}
