@@ -104,7 +104,7 @@ export default function Home() {
               alt='Davronbek Turdiyev' 
               width={682} 
               height={647}
-              priority // Mark as priority since it's a hero image
+              priority={true} // Mark as priority since it's a hero image
               quality={90}
             />
           </div>
