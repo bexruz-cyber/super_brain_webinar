@@ -73,7 +73,7 @@ export default function Home() {
   );
 
   return (
-    <div>
+    <div className='bg-[#FFECDE] text-[#000000]'>
       <div className='flex items-center justify-center min-h-screen overflow-x-hidden max-md:py-7'>
         <div className="relative flex-col items-center max-w-[1198px] px-5 mx-auto w-full">
           {/* Left section */}

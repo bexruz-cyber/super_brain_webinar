@@ -84,7 +84,7 @@ export function RegistrationModal({ isOpen, onClose }: RegistrationModalProps) {
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 overflow-y-auto">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 text-black bg-black/50 overflow-y-auto">
       <div
         ref={modalRef}
         className="relative w-full max-w-[420px] bg-white pt-7 rounded-[30px] shadow-lg mx-auto animate-fadeIn"
