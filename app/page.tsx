@@ -18,7 +18,7 @@ export default function Home() {
 
   // Extract repeatable components to improve readability and reduce duplication
   const MasterclassList = ({ className = "" }) => (
-    <div className={`bg-[#FFD4BB] bg-site py-6 rounded-[30px] ${className}`}>
+    <div className={`bg-site py-6 rounded-[30px] ${className}`}>
       <h4 className='font-bold text-lg leading-5 mb-7 text-center'>Masterklassda siz:</h4>
       <ul className="flex flex-col gap-[22px]">
         <li className="font-normal text-sm leading-[22px] flex gap-3 items-start">
