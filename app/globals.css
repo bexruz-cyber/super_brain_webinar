@@ -49,3 +49,7 @@ body {
 .shadow-custom-blue {
   box-shadow: 0px 5px 0px 0px #105879;
 }
+
+.bg-site{
+ background-color: #FFD4BB; 
+}
