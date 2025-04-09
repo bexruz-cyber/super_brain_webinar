@@ -101,10 +101,10 @@ export function RegistrationModal({ isOpen, onClose }: RegistrationModalProps) {
 
         <div className="p-6 overflow-y-auto">
           <div className="mb-5 text-center">
-            <h2 className="font-bold text-sm sm:text-lg p-2 sm:p-2.5 border border-[#EA642B] max-w-[90%] sm:max-w-[396px] mx-auto text-center rounded-[10px] mb-3">
+            <h2 className="font-bold text-sm sm:text-lg p-2 sm:p-2.5 border text-black border-[#EA642B] max-w-[90%] sm:max-w-[396px] mx-auto text-center rounded-[10px] mb-3">
               15-16-17-Aprel | Soat 20:00 da
             </h2>
-            <h3 className="font-bold text-lg sm:text-xl leading-tight mb-2">
+            <h3 className="font-bold text-lg text-black sm:text-xl leading-tight mb-2">
               Masterklassda ishtirok etish uchun ro&apos;yxatdan o&apos;ting
             </h3>
           </div>
@@ -118,7 +118,7 @@ export function RegistrationModal({ isOpen, onClose }: RegistrationModalProps) {
             }}
           >
             <div>
-              <label htmlFor="firstName" className="block mb-1 font-medium text-sm">
+              <label htmlFor="firstName" className=" text-black block mb-1 font-medium text-sm">
                 Ism va Familyagiz
               </label>
               <input
@@ -129,13 +129,13 @@ export function RegistrationModal({ isOpen, onClose }: RegistrationModalProps) {
                 onChange={handleChange}
                 required
                 disabled={isSubmitting}
-                className="w-full p-3 border border-gray-300 rounded-[10px] focus:outline-none focus:ring-2 focus:ring-[#EA642B] transition-all duration-200"
+                className="w-full p-3 border border-gray-300 rounded-[10px] focus:outline-none text-black focus:ring-2 focus:ring-[#EA642B] transition-all duration-200"
                 placeholder="Ismingizni kiriting"
               />
             </div>
 
             <div>
-              <label htmlFor="phoneNumber" className="block mb-1 font-medium text-sm">
+              <label htmlFor="phoneNumber" className=" text-black block mb-1 font-medium text-sm">
                 Telefon raqamingiz
               </label>
               <IMaskInput
@@ -147,7 +147,7 @@ export function RegistrationModal({ isOpen, onClose }: RegistrationModalProps) {
                 required
                 disabled={isSubmitting}
                 placeholder="+998 __ ___ __ __"
-                className="w-full p-3 border border-gray-300 rounded-[10px] focus:outline-none focus:ring-2 focus:ring-[#EA642B] transition-all duration-200"
+                className="w-full p-3 border border-gray-300 rounded-[10px] focus:outline-none text-black focus:ring-2 focus:ring-[#EA642B] transition-all duration-200"
               />
             </div>
 
