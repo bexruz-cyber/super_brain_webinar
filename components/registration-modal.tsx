@@ -138,16 +138,16 @@ export function RegistrationModal({ isOpen, onClose }: RegistrationModalProps) {
               <label htmlFor="phoneNumber" className=" text-black block mb-1 font-medium text-sm">
                 Telefon raqamingiz
               </label>
-              <IMaskInput
+              <input
+                type="text"
                 id="phoneNumber"
                 name="phoneNumber"
-                mask="+{998} 00 000 00 00"
                 value={formData.phoneNumber}
-                onAccept={(value) => setFormData((prev) => ({ ...prev, phoneNumber: value }))}
+                onChange={handleChange}
                 required
                 disabled={isSubmitting}
-                placeholder="+998 __ ___ __ __"
                 className="w-full p-3 border border-gray-300 rounded-[10px] focus:outline-none text-black focus:ring-2 focus:ring-[#EA642B] transition-all duration-200"
+                placeholder="Telefoningizni kiriting"
               />
             </div>
 
